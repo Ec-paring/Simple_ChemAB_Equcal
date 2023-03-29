@@ -444,7 +444,7 @@ class Define:
     def buffer_solution(K, task, Kw, ph=Decimal("7"), Ca=Decimal("0"), Cb=Decimal("0"), Ion_0=Decimal("1e-7")):
         if task == True:
             while True:
-                Ion_1 = K*(Ca*Ion_0 - Ion_0**2 + Kw)/(Cb*Ion_0 + Ion_0**2 - Kw)
+                Ion_1 = Decimal(math.sqrt((Ion_0*Ca*K + Kw*(K+Ion_0))/(K+Ion_0+Cb)))
                 RelativeError = (abs(Ion_1-Ion_0))/Ion_1
                 Ion_0 = Ion_1
                 if RelativeError <= Decimal("0.01"):
